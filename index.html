@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+        <title>
+			Dying Light
+		</title>
+		<style>
+			* html, html, body { height:100%; overflow:hidden; margin:0; padding:0; background-color:black; }
+			#audioWrapper {
+				width:  100%;
+				height: 100%;
+				position: relative; 
+				background-image: url('media/oli.jpg');
+				background-position-x: 50%;
+				background-position-y: 50%;
+				background-size: 100%;
+				background-repeat: no-repeat;
+				background-color: black;
+			}
+			#audioWrapper audio { display:none; }
+			#audioWrapper img {
+				display:inline-block;
+				width: 42px;
+				height:32px;
+				margin: 4px;
+			}
+		</style>
+		<!--[if lt IE 9]><script src="html5shiv.js"></script><![endif]-->
+		<script src="ga.js"></script>
+		<script>ga('/frankerz');</script>
+	</head>
+	<body>
+		<div id="audioWrapper">
+			<audio id="woof" preload="auto" autoplay loop controls>
+				<source src="media/dyinglightexe.mp3" type='audio/mpeg'>
+				<source src="media/dying_lightexe.ogg" type='audio/ogg'>
+			</audio>
+		</div>
+		<script>
+			var mediaId = "woof";
+			document.getElementById(mediaId).play();
+			document.onkeydown = function(e) {
+				mediaElem = document.getElementById(mediaId);
+				if(e.keyCode === 107 || e.keyCode === 187)
+					mediaElem.volume = Math.min(1, mediaElem.volume+0.1);
+				if(e.keyCode === 109 || e.keyCode === 189)
+					mediaElem.volume = Math.max(0, mediaElem.volume-0.1);
+				return false;
+			};
+			
+			var $frankerz = document.createElement("img");
+			$frankerz.src = "media/test.png";
+			document.getElementById("audioWrapper").appendChild($frankerz);
+			
+			setInterval(function() {
+				$frankerz = $frankerz.cloneNode(true);
+				document.getElementById("audioWrapper").appendChild($frankerz);
+			}, 500);
+		</script>
+		<!-- Shoutouts to audio creator: http://soundcloud.com/marksoupial/ -->
+	</body>
+</html>
